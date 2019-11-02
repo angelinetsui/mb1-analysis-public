@@ -341,7 +341,7 @@ Note there is some missing data.
 
 ```{r}
 d$monolingual <- d$lang_group %in% 
-  c("monolingual","monilingual","monolinugal","Monolinugal")
+  c("monolingual","monilingual","monolinugal","Monolinugal", "monolingual, not english")
 ```
 
 We can also approach classifying monolingual status based on whether any of the langX_exposure columns are >= 90%.
@@ -815,6 +815,12 @@ d %>%
   filter(more_than_18 != 0) %>%
   datatable
 
+# coverletter outputs
+sum(d$looking_time > 18, na.rm=TRUE)
+mean(d$looking_time > 18, na.rm=TRUE)
+sum(d$looking_time > 19, na.rm=TRUE)
+mean(d$looking_time > 19, na.rm=TRUE)
+
 ## per decision made on 10/19, cropping all looking times over 18s to exactly 18s
 
 d <- d %>% 
@@ -865,7 +871,4 @@ Output intermediate file.
 ```{r}
 write_csv(d, "processed_data/02_validated_output.csv")
 ```
-
-
-
 

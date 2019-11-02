@@ -356,6 +356,14 @@ validate_that(nrow(lost_participants_td) == 0)
 validate_that(nrow(lost_participants_pd) == 0)
 ```
 
+# Uniqify subid
+
+Note that `subid` is not unqiue except within lab, this will compromise our regression models in the final paper [issue](https://github.com/manybabies/mb1-analysis-public/issues/8). We fix this here by creating a new variable. 
+
+```{r}
+d$subid_unique <- str_c(d$lab, ":", d$subid)
+```
+
 
 # Output
 
